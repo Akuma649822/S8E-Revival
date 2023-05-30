@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="4">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Init.
+
+// Set level variables:
+global.add_time         = false;
+global.player_rings     = 0;
+global.player_rings_100 = 1;
+global.game_time        = 0;
+global.object_time      = 0;
+
+// Load stage data:
+stage_initialization();
+
+// Save progress.
+if (global.save_selected != 0)
+{
+    save_create(global.save_selected);
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

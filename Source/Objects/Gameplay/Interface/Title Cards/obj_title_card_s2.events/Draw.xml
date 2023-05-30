@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Draw title card.
+
+// Black Rectangle:
+if (tc_state == 0)
+{
+    draw_set_color(c_black);
+    draw_rectangle(view_xview, view_yview, view_xview + view_wview, view_yview + view_hview, false);
+}
+
+// Blue Rectangle:
+draw_set_color(c_blue);
+draw_rectangle(view_xview, view_yview - (tc_state != 0), view_xview + view_wview, view_yview + tc_blue_y, false);
+
+// Yellow Rectangle:
+draw_set_color(c_yellow);
+draw_rectangle(view_xview + view_wview - tc_yellow_x, view_yview + view_hview - 64, view_xview + view_wview, view_yview + view_hview, false);
+
+// Red Rectangle:
+tc_red_y = 0;
+repeat (ceil(view_hview / sprite_get_height(spr_title_card_banner_s2)))
+{
+    draw_sprite(spr_title_card_banner_s2, 0, view_xview + tc_red_x, view_yview + tc_red_y);
+    tc_red_y += 80;
+}
+
+// Set title card font.
+draw_set_font(global.title_card_s2_font);
+draw_set_color(c_white);
+draw_set_halign(fa_right);
+
+// Zone name:
+draw_text(view_xview + tc_name_x, view_yview + 58, string(global.zone_name));
+draw_text(view_xview + tc_zone_x, view_yview + 82, "ZONE");
+
+// Act:
+draw_sprite(spr_title_card_act_s2, global.zone_act - 1, view_xview + tc_zone_x + 1, view_yview + 82);
+
+draw_set_halign(fa_left);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

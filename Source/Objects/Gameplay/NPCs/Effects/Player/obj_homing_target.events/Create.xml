@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Variables.
+target       = noone;
+target_scale = 25;
+target_angle = 0;
+target_alpha = 0;
+
+// Play target sound.
+// We store it in a variable when we need to stop this specific instance, preventing possible audio conflicts with other instances that play the same sound.
+target_sfx = audio_play_sound(SFX._general_switch, global.sfx_volume, 1, 0, 0);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

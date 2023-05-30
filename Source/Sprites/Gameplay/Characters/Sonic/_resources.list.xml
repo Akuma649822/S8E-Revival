@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_sonic_idle" type="RESOURCE"/>
+  <resource name="spr_sonic_idle_bored" type="RESOURCE"/>
+  <resource name="spr_sonic_lookup" type="RESOURCE"/>
+  <resource name="spr_sonic_crouch" type="RESOURCE"/>
+  <resource name="spr_sonic_walk" type="RESOURCE"/>
+  <resource name="spr_sonic_run" type="RESOURCE"/>
+  <resource name="spr_sonic_peelout" type="RESOURCE"/>
+  <resource name="spr_sonic_spring" type="RESOURCE"/>
+  <resource name="spr_sonic_skid" type="RESOURCE"/>
+  <resource name="spr_sonic_skid_turn" type="RESOURCE"/>
+  <resource name="spr_sonic_push" type="RESOURCE"/>
+  <resource name="spr_sonic_roll" type="RESOURCE"/>
+  <resource name="spr_sonic_dropdash" type="RESOURCE"/>
+  <resource name="spr_sonic_spindash" type="RESOURCE"/>
+  <resource name="spr_sonic_breath" type="RESOURCE"/>
+  <resource name="spr_sonic_grab" type="RESOURCE"/>
+  <resource name="spr_sonic_grab_move" type="RESOURCE"/>
+  <resource name="spr_sonic_grab_shimmy" type="RESOURCE"/>
+  <resource name="spr_sonic_corkscrew" type="RESOURCE"/>
+  <resource name="spr_sonic_balance" type="RESOURCE"/>
+  <resource name="spr_sonic_balance_alt" type="RESOURCE"/>
+  <resource name="spr_sonic_hurt" type="RESOURCE"/>
+  <resource name="spr_sonic_die" type="RESOURCE"/>
+  <resource name="spr_sonic_drown" type="RESOURCE"/>
+</resources>

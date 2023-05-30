@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_spindash_dust" type="RESOURCE"/>
+  <resource name="spr_electricity_spark" type="RESOURCE"/>
+  <resource name="spr_skid_dust" type="RESOURCE"/>
+  <resource name="spr_homing_target" type="RESOURCE"/>
+</resources>

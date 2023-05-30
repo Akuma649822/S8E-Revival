@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_insta_shield" type="RESOURCE"/>
+  <resource name="obj_player_fire_shield" type="RESOURCE"/>
+  <resource name="obj_player_bubble_shield" type="RESOURCE"/>
+  <resource name="obj_player_electricity_shield" type="RESOURCE"/>
+</resources>

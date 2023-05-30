@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// (De)activate instances.
+
+// Check for deactivation to toggle instances on/off accordingly.
+if (!deactivation)
+{
+    deactivation = true;
+
+    // Large region: this is for tiles since those are the most important. For this region we use the screen size * 2 (480 x 270 =&gt; 960 x 540)
+    // We want to make sure that these are activated first to prevent other objects getting stuck inside them.
+    instance_deactivate_all(true);
+    instance_activate_object(obj_indestructible);
+    instance_activate_object(par_solid);
+    instance_activate_object(obj_monitor_collision);
+    instance_activate_object(par_swing);
+    instance_activate_object(par_moving_platform);
+    instance_activate_object(par_spike);
+    instance_activate_object(obj_spike_moving_trigger);
+    instance_activate_region(view_xview[0] - global.screen_width / 2, view_yview - global.screen_height / 2, view_wview[0] + global.screen_width, view_hview[0] + global.screen_height, true);
+
+    // Middle region: This is for other objects that we want to spawn next. We have to do this twice.
+    // Once using using player coordinates, and another using view_xview/view_yview. We do this to make sure that when the player outruns the camera, instances are activated inside the camera view and near the player.
+    if (instance_exists(obj_player))
+    {
+        instance_activate_region(obj_player.x - global.screen_width / 2, obj_player.y - global.screen_height / 2, global.screen_width, global.screen_height, true);
+    }
+    if (instance_exists(obj_ai))
+    {
+        instance_activate_region(obj_ai.x - global.screen_width / 2, obj_ai.y - global.screen_height / 2, global.screen_width, global.screen_height, true);
+    }
+    instance_activate_region(view_xview[0] - 64, view_yview - 64, view_wview[0] + 128, view_hview[0] + 128, true);
+}
+else
+{
+    deactivation = false;
+    instance_activate_all();
+}
+
+// Repeat every 10 frames.
+// The instance_activate_*() / instance_deactivate_*() functions are quite costly to use, and so it's not appropriate to call them every step (which is what S8E/Harinezumi does).
+// 10 frames is quick enough that the game can still run smoothly and the player is still capable of interacting with other instances.
+alarm[0] = 10;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Change audio volume &amp; pitch.
+
+// Exit when the game over is on screen.
+if (instance_exists(obj_game_over))
+{
+    global.bgm_volume = backup_bgm_volume;
+    global.sfx_volume = backup_sfx_volume;
+    exit;
+}
+
+// Exit when the results are on screen.
+if (instance_exists(obj_results) &amp;&amp; !zone_results)
+{
+    zone_results = true;
+    audio_stop(all);
+    global.bgm_volume = backup_bgm_volume;
+    global.sfx_volume = backup_sfx_volume;
+    audio_play_sound(SFX._jingle_scoring, global.bgm_volume, 1, 0, 0);
+    exit;
+}
+if (zone_results)
+{
+    exit;
+}
+
+// Lower the music volume if the life jingle is playing.
+if (instance_exists(obj_player))
+{
+    if (!fadeout_flag)
+    {
+        if (audio_is_playing(SFX._player_life) || audio_is_playing(SFX._general_emerald))
+        {
+            global.bgm_volume = 0.00;
+            global.sfx_volume = 0.00;
+        }
+        else
+        {
+            if (global.bgm_volume &lt; backup_bgm_volume)
+            {
+                global.bgm_volume += 0.01;
+            }
+            if (global.sfx_volume &lt; backup_sfx_volume)
+            {
+                global.sfx_volume += 0.01;
+            }
+        }
+    }
+    else // This is used when the player has died.
+    {
+        if (global.bgm_volume != 0.00)
+        {
+            global.bgm_volume -= 0.01;
+        }
+        else global.bgm_volume = 0.00;
+
+        if (global.sfx_volume != 0.00)
+        {
+            global.sfx_volume -= 0.01;
+        }
+        else global.sfx_volume = 0.00;
+    }
+}
+
+// Stop music when drowning.
+if (audio_is_playing(SFX._jingle_drown))
+{
+    audio_stop(global.bgm_id);
+}
+else
+{
+    audio_play_music(global.bgm_id);
+}
+
+// Set the volume of the currently playing zone music and invincibility jingle.
+if (!audio_is_playing(SFX._jingle_invincibility))
+{
+    audio_set_volume(global.bgm_id, global.bgm_volume);
+}
+else
+{
+    audio_set_volume(global.bgm_id, 0.00);
+}
+
+if (!audio_is_playing(SFX._jingle_drown))
+{
+    audio_set_volume(SFX._jingle_invincibility, global.bgm_volume);
+}
+else
+{
+    audio_set_volume(SFX._jingle_invincibility, 0.00);
+}
+
+// Set the pitch of the music depending on whether the player's speedshoe is active or not.
+if (instance_exists(obj_player))
+{
+    if (obj_player.speedshoe)
+    {
+        if (audio_get_pitch(global.bgm_id) &lt; 1.15)
+        {
+            audio_set_pitch(global.bgm_id, audio_get_pitch(global.bgm_id) + 0.01);
+        }
+        else if (audio_get_pitch(global.bgm_id) &gt; 1.15)
+        {
+            audio_set_pitch(global.bgm_id, 1.15);
+        }
+    }
+    else
+    {
+        if (audio_get_pitch(global.bgm_id) &gt; 1.00)
+        {
+            audio_set_pitch(global.bgm_id, audio_get_pitch(global.bgm_id) - 0.01);
+        }
+        else if (audio_get_pitch(global.bgm_id) &lt; 1.00)
+        {
+            audio_set_pitch(global.bgm_id, 1.00);
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

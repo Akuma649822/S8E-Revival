@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_empty" type="RESOURCE"/>
+  <resource name="spr_camera" type="RESOURCE"/>
+  <resource name="Debug" type="GROUP"/>
+</resources>

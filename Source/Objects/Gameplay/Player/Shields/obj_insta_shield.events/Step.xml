@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Set position, animation and decrease frames.
+
+// Set the position to the player's position. 
+if (instance_exists(obj_player))
+{
+    x = floor(obj_player.x);
+    y = floor(obj_player.y);
+}
+else // Since the player doesn't exist, there's no reason to keep this instance alive.
+{
+    instance_destroy();
+}
+
+// Animate.
+if (floor(image_index) &lt; 6)
+{
+    image_index += 0.5;
+}
+else
+{
+    image_index = 6;
+}
+
+// Decrease frames, destroy once depleted.
+if (remaining_frames &gt; 0)
+{
+    remaining_frames -= 1;
+}
+else
+{
+    instance_destroy();
+}
+
+// Disable the players jump roll lock.
+if (instance_exists(obj_player))
+{
+    with (obj_player)
+    {
+        if (jump_lock)
+        {
+            jump_lock = false;
+        }
+    }
+}
+
+// Also while active, make sure that the player can destroy objects at a extended range and is temporarly invulnerable.
+if (instance_exists(obj_player))
+{
+    // Player invincibility, only run when the player is not already in a state where they cannot be hurt.
+    with (obj_player)
+    {
+        if (invincibility == 0)
+        {
+            invincibility_timer = 5;
+        }
+    }
+
+    // Destroy objects. (Enemies, Monitors)
+
+    // Badniks:
+    var _badnik;
+    _badnik = instance_place(x, y, par_enemy);
+    if (_badnik != noone)
+    {
+        with (_badnik) instance_destroy();
+
+        // Player rebound:
+        with (obj_player)
+        {
+            if (y_speed &gt; 0)
+            {
+                if (input_action)
+                {
+                    y_speed       *= -1;
+                    ground         = false;
+                    jump_completed = false;
+                }
+                else
+                {
+                    y_speed        = max(-4, y_speed * -1);
+                    ground         = false;
+                    jump_completed = false;
+                }
+            }
+        }
+    }
+
+    // Monitor:
+    var _monitor;
+    _monitor = instance_place(x, y, obj_monitor);
+    if (_monitor != noone)
+    {
+        _monitor.parent = obj_player;
+        with (_monitor) instance_destroy();
+
+        // Player rebound:
+        with (obj_player)
+        {
+            if (y_speed &gt; 0)
+            {
+                if (input_action)
+                {
+                    y_speed       *= -1;
+                    ground         = false;
+                    jump_completed = false;
+                }
+                else
+                {
+                    y_speed        = max(-4, y_speed * -1);
+                    ground         = false;
+                    jump_completed = false;
+                }
+            }
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

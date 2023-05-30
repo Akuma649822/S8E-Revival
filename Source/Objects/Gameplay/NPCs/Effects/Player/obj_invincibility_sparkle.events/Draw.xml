@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DRAW" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Draw Sparkle.
+
+// Get and Set Alpha:
+var my_alpha;
+if (instance_exists(obj_player))
+{
+    my_alpha = obj_player.animation_alpha;
+}
+else
+{
+    my_alpha = 0;
+}
+
+// Draw the Sparkle.
+draw_sprite_ext(sprite_index, image_index, x + lengthdir_x(r, d), y + lengthdir_y(r, d), 1, 1, 0, c_white, my_alpha);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

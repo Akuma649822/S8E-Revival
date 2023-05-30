@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Position, Scaling and Angle.
+
+// Destroy.
+if (!instance_exists(target))
+{
+    instance_destroy();
+}
+else
+{
+    // Reposition:
+    x = target.x;
+    y = target.y;
+
+    // Scale.
+    if (target_scale &gt; 1)
+    {
+        target_scale += floor(1 - target_scale) * 0.5;
+    }
+    else
+    {
+        target_scale = 1;
+    }
+
+    // Angle.
+    if (target_scale == 1)
+    {
+        target_angle += 5;
+    }
+
+    // Alpha.
+    if (target_alpha != 1)
+    {
+        target_alpha += (1 - target_alpha) * 0.05;
+    }
+}
+
+// Set properties.
+image_xscale = target_scale;
+image_yscale = target_scale;
+if (!visible)
+{
+    target_scale = 25;
+    target_angle = 0;
+    target_alpha = 0;
+}
+
+// Check if there's solids between the player and the target, preventing homing into a wall.
+var _collision_test;
+_collision_test = instance_position(x, y, target);
+if (_collision_test != noone)
+{
+    var _collision_id;
+    _collision_id = object_get_name(_collision_test.object_index);
+    if (string_pos("obj_monitor", _collision_id) != 0)
+    {
+        with (_collision_test)
+        {
+            if (collision)
+            {
+                if (collision.x != -1)
+                {
+                    with (collision)
+                    {
+                        if (collision_line(x, y, obj_player.x, obj_player.y, par_solid, true, true))
+                        {
+                            with (obj_homing_target)
+                            {
+                                visible = false;
+                            }
+                        }
+                        else
+                        {
+                            with (obj_homing_target)
+                            {
+                                visible = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (collision_line(x, y, obj_player.x, obj_player.y, par_solid, true, true))
+                    {
+                        with (other)
+                        {
+                            visible = false;
+                        }
+                    }
+                    else
+                    {
+                        with (other)
+                        {
+                            visible = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (string_pos("obj_spring", _collision_id) != 0)
+    {
+        with (_collision_test)
+        {
+            if (collision_line(x, y, obj_player.x, obj_player.y, par_solid, true, true))
+            {
+                with (obj_homing_target)
+                {
+                    visible = false;
+                    
+                    // Stop the lock-on sound if it's playing - we do this only with springs since they can be placed within terrain.
+                    if (audio_is_playing(target_sfx))
+                    {
+                        audio_stop(target_sfx);
+                    }
+                }
+            }
+            else
+            {
+                with (obj_homing_target)
+                {
+                    visible = true;
+                }
+            }
+        }
+    }
+    else
+    {
+        // When targeting badniks, additionally check to see if there is a bridge between it and the player.
+        // We do this as the Chopper badnik can be targeted below a bridge.
+        if (collision_line(x, y, obj_player.x, obj_player.y, par_solid, true, true) || collision_line(x, y, obj_player.x, obj_player.y, par_bridge, true, true))
+        {
+            with (other)
+            {
+                visible = false;
+            }
+        }
+        else
+        {
+            with (other)
+            {
+                visible = true;
+            }
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

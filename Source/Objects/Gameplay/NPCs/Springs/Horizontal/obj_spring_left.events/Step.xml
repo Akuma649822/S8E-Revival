@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Reset frame.
+if (spring_frame == 1)
+{
+    if (spring_frametime &gt; 0)
+    {
+        spring_frametime -= 1;
+    }
+    else
+    {
+        spring_frame     = 0;
+        spring_frametime = 15;
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Variables.
+sign_post_camera    = instance_create(x, y - 80, obj_sign_post_camera);
+sign_post_activated = false;
+sign_post_duration  = 128;
+sign_post_timer     = 2;
+sign_post_finished  = false;
+image_speed         = 0;
+
+// NOTE: be sure to place the sign post 240 pixels between the room's border and the dead center of the sign post.
+// This ensures the camera won't shift to the right if the player arrives in their peelout state.
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

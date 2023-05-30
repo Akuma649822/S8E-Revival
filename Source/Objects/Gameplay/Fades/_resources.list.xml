@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_fade_in" type="RESOURCE"/>
+  <resource name="obj_fade_next" type="RESOURCE"/>
+  <resource name="obj_fade_to_value" type="RESOURCE"/>
+  <resource name="obj_fade_restart" type="RESOURCE"/>
+  <resource name="obj_fade_game_restart" type="RESOURCE"/>
+  <resource name="Data Slot only" type="GROUP"/>
+</resources>

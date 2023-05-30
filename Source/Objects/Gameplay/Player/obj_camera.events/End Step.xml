@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Camera shifting.
+if (cam_handle == obj_player)
+{
+    // Looking up:
+    if (cam_handle.state == STATE_LOOKUP &amp;&amp; cam_handle.timer_up &gt;= 120 &amp;&amp; cam_handle.y &gt; limit_top + view_yhalf)
+    {
+        cam_y_shift = max(-104, cam_y_shift - 2);
+    }
+    else if (cam_handle.state == STATE_CROUCH &amp;&amp; cam_handle.timer_down &gt;= 120 &amp;&amp; cam_handle.y &lt; limit_bottom - view_yhalf) // Looking down.
+    {
+        cam_y_shift = min(104, cam_y_shift + 2);
+    }
+    else // Center camera.
+    {
+        cam_y_shift = max(0, abs(cam_y_shift) - 2) * sign(cam_y_shift);
+    }
+
+    // Pan the camera horizontally if the player is using the peelout move.
+    if ((cam_handle.state == STATE_PEELOUT &amp;&amp; cam_handle.peelout_timer &gt; 6) || cam_handle.peelout_flag == 1)
+    {
+        if (cam_handle.animation_direction == 1)
+        {
+            cam_x_shift = approach(cam_x_shift, 64, 2);
+        }
+        else if (cam_handle.animation_direction == -1)
+        {
+            cam_x_shift = approach(cam_x_shift, -64, 2);
+        }
+    }
+    else
+    {
+        cam_x_shift = max(0, abs(cam_x_shift) - 2) * sign(cam_x_shift);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Camera movement.
+
+// Update borders.
+border_left   = (cam_x - 8) - cam_lag;
+border_right  = (cam_x + 8) + cam_lag;
+border_top    = cam_y - 32;
+border_bottom = cam_y + 32;
+
+// Set temp view center variables:
+var centerX, centerY;
+centerX = view_wview[0] / 2;
+centerY = view_hview[0] / 2;
+
+// Player camera handling:
+if (cam_handle == obj_player)
+{
+    // Move camera to the right.
+    if (cam_handle.x &gt; border_right &amp;&amp; cam_handle.x &lt;= (limit_right - centerX))
+    {
+        cam_x += min(abs(cam_handle.x - border_right), 16);
+    }
+
+    // Move camera to the left.
+    if (cam_handle.x &lt; border_left &amp;&amp; cam_handle.x &gt;= (limit_top - centerX))
+    {
+        cam_x -= min(abs(cam_handle.x - border_left), 16);
+    }
+
+    // Move camera up or down while in the air.
+    if (!cam_handle.ground &amp;&amp; cam_handle.state != STATE_DEATH)
+    {
+        if (cam_handle.y &gt; border_bottom &amp;&amp; cam_handle.y &lt; limit_bottom - centerY)
+        {
+            cam_y += cam_handle.y - border_bottom;
+        }
+        if (cam_handle.y &lt; border_top &amp;&amp; cam_handle.y &gt; limit_top + centerY)
+        {
+            cam_y -= border_top - cam_handle.y;
+        }
+    }
+
+    // Move camera up or down while grounded.
+    if (cam_handle.ground &amp;&amp; cam_handle.state != STATE_DEATH)
+    {
+        if (cam_handle.y != cam_y)
+        {
+            if (abs(cam_handle.y - cam_handle.yprevious) &lt;= 6)
+            {
+                if (cam_handle.y &gt; cam_y &amp;&amp; cam_handle.y &lt; limit_bottom - centerY)
+                {
+                    cam_y += min(abs(cam_handle.y - cam_y), 6);
+                }
+                if (cam_handle.y &lt; cam_y &amp;&amp; cam_handle.y &gt; limit_top + centerY)
+                {
+                    cam_y -= min(abs(cam_y - cam_handle.y), 6);
+                }
+            }
+            if (abs(cam_handle.y - cam_handle.yprevious) &gt; 6)
+            {
+                if (cam_handle.y &gt; cam_y &amp;&amp; cam_handle.y &lt; limit_bottom - centerY)
+                {
+                    cam_y += min(abs(cam_handle.y - cam_y), 16);
+                }
+                if (cam_handle.y &lt; cam_y &amp;&amp; cam_handle.y &gt; 0 + centerY)
+                {
+                    cam_y -= min(abs(cam_y - cam_handle.y), 16);
+                }
+            }
+        }
+    }
+}
+
+// Target camera handling:
+if (cam_handle != noone &amp;&amp; cam_handle != obj_player)
+{
+    if (cam_handle.x != cam_x)
+    {
+        if (cam_handle.x &gt; cam_x &amp;&amp; cam_x &lt;= limit_right - centerX)
+        {
+            cam_x += min(abs(cam_handle.x - cam_x), cam_speed);
+        }
+        if (cam_handle.x &lt; cam_x &amp;&amp; cam_x &gt;= limit_left - centerX)
+        {
+            cam_x -= min(abs(cam_x - cam_handle.x), cam_speed);
+        }
+    }
+    if (cam_handle.y != cam_y)
+    {
+        if (cam_handle.y &gt; cam_y &amp;&amp; cam_y &lt; limit_bottom - centerY)
+        {
+            cam_y += min(abs(cam_handle.y - cam_y), cam_speed);
+        }
+        if (cam_handle.y &lt; cam_y &amp;&amp; cam_y &gt; limit_top - centerY)
+        {
+            cam_y -= min(abs(cam_y - cam_handle.y), cam_speed);
+        }
+    }
+}
+
+// Set position, floor the camera values to prevent jittering.
+x = floor(cam_x + cam_x_shift);
+y = floor(cam_y + cam_y_shift);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

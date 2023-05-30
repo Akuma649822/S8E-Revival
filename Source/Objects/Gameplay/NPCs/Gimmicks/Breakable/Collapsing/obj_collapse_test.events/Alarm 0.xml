@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="ALARM" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Create collapsing tiles.
+
+// Variables.
+var tile_ox, tile_oy, tile_width, tile_height, tile_size;
+tile_ox     = 2;
+tile_oy     = 5;
+tile_size   = 16;
+tile_width  = sprite_width  div tile_size;
+tile_height = sprite_height div tile_size;
+
+var tile_int, tile_w, tile_h;
+tile_int = 0;
+
+// Create tiles:
+for (tile_h = 0; tile_h &lt; tile_height; tile_h += 1)
+{
+    for (tile_w = 0; tile_w &lt; tile_width; tile_w += 1)
+    {
+        with (instance_create(x + tile_w * 16, y + tile_h * 16, obj_collapse_pieces_test))
+        {
+            image_speed = 0;
+            image_index = tile_h * tile_width + tile_w;
+            tile_int    = tile_h * tile_width + tile_w;
+            mask_index  = spr_collapse_pieces_test;
+            if (image_xscale &gt; 0)
+            {
+                alarm[0] = ((tile_width - tile_w) * other.tile_ox) + (((tile_height - tile_h) - 1) * other.tile_oy);
+            }
+            else
+            {
+                alarm[0] = (tile_w * other.tile_ox) + (((tile_height - tile_h) - 1) * other.tile_oy);
+            }
+        }
+    }
+}
+audio_play_sound(SFX._general_crumble, global.sfx_volume, 1, 0, 0);
+instance_destroy();
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

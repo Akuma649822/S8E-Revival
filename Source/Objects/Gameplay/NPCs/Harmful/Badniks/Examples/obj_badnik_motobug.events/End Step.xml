@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="2">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Movement.
+
+// Run only if in view (fixes a bug where the motobug could clip into the floor, which is a result of instance deactivation):
+if (in_view())
+{
+    // Horizontal:
+    repeat (abs(x_spd))
+    {
+        if (place_meeting(x + sign(x_spd), y, par_terrain) &amp;&amp; !place_meeting(x + sign(x_spd), y - 1, par_terrain))
+        {
+            y -= 1;
+        }
+
+        if (place_meeting(x + sign(x_spd), y + 2, par_terrain) &amp;&amp; !place_meeting(x + sign(x_spd), y + 1, par_terrain))
+        {
+            y += 1;
+        }
+
+        if (!place_meeting(x + sign(x_spd), y, par_terrain) &amp;&amp; !place_meeting(x + sign(x_spd), y, obj_badnik_block))
+        {
+            x += x_spd;
+        }
+        else
+        {
+            if (x_tmr == -5)
+            {
+                x_tmr = 60;
+            }
+        }
+    }
+
+    // Timer to change direction.
+    if (x_tmr &gt; 0)
+    {
+        x_tmr -= 1;
+        if (x_tmr &lt;= 0)
+        {
+            image_xscale *= -1;
+            x_spd         = -x_spd;
+            x_tmr         = -5;
+        }
+    }
+
+    // Vertical:
+    repeat (abs(y_spd))
+    {
+        if (!ground)
+        {
+            y += sign(y_spd);
+        }
+        else
+        {
+            y_spd = 0;
+        }
+    }
+
+    if (!ground)
+    {
+        y_spd += 0.21875;
+        if (y_spd &gt; 12)
+        {
+            y_spd = 12;
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

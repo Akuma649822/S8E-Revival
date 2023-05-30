@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="par_terrain" type="RESOURCE"/>
+  <resource name="par_solid" type="RESOURCE"/>
+  <resource name="par_solid_no_angle" type="RESOURCE"/>
+  <resource name="par_platform" type="RESOURCE"/>
+  <resource name="par_platform_no_angle" type="RESOURCE"/>
+  <resource name="par_layer_low" type="RESOURCE"/>
+  <resource name="par_layer_low_no_angle" type="RESOURCE"/>
+  <resource name="par_layer_high" type="RESOURCE"/>
+  <resource name="par_layer_high_no_angle" type="RESOURCE"/>
+  <resource name="par_moving_platform" type="RESOURCE"/>
+  <resource name="par_swing" type="RESOURCE"/>
+</resources>

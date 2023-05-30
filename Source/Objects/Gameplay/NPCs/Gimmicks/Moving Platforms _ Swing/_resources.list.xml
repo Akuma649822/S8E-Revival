@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_moving_platform_test" type="RESOURCE"/>
+  <resource name="obj_swing_platform_test" type="RESOURCE"/>
+  <resource name="Directions" type="GROUP"/>
+</resources>

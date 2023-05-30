@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Camera variables.
+
+// Focus view:
+view_object[0] = id;
+view_xhalf     = global.screen_width  / 2;
+view_yhalf     = global.screen_height / 2;
+
+// Horizontal Borders:
+border_left  = x - 8;
+border_right = x + 8;
+
+// Horizontal limits:
+limit_left  = 0;
+limit_right = room_width;
+
+// Vertical Borders:
+border_top    = y - 32;
+border_bottom = y + 32;
+
+// Vertical limits:
+limit_top    = 0;
+limit_bottom = room_height;
+
+// Camera handle:
+cam_handle = obj_player;
+cam_speed  = 6.5;
+
+// Camera position.
+cam_x       = x;
+cam_y       = y;
+cam_x_shift = 0;
+cam_y_shift = 0;
+cam_lag     = 0;
+cam_limit   = 0;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource filename="Init_" name="Init." type="GROUP"/>
+  <resource name="Gameplay" type="GROUP"/>
+  <resource filename="Menus _ Continue" name="Menus / Continue" type="GROUP"/>
+</resources>

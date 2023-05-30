@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="save_create" type="RESOURCE"/>
+  <resource name="save_load" type="RESOURCE"/>
+  <resource name="save_delete" type="RESOURCE"/>
+  <resource name="save_reload_all" type="RESOURCE"/>
+  <resource filename="Data Select _ Level Select" name="Data Select / Level Select" type="GROUP"/>
+  <resource name="Global" type="GROUP"/>
+</resources>

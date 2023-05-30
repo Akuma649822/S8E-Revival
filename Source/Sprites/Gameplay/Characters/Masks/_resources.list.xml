@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="spr_player_mask_main" type="RESOURCE"/>
+  <resource name="spr_player_mask_large" type="RESOURCE"/>
+  <resource name="spr_player_mask_big" type="RESOURCE"/>
+  <resource name="spr_player_mask_mid" type="RESOURCE"/>
+  <resource name="spr_player_mask_small" type="RESOURCE"/>
+  <resource name="spr_player_mask_dot" type="RESOURCE"/>
+  <resource name="spr_player_mask_wobble" type="RESOURCE"/>
+  <resource name="spr_player_mask_lines" type="RESOURCE"/>
+  <resource name="spr_player_mask_ledge_climb" type="RESOURCE"/>
+  <resource name="spr_player_mask_thin_block" type="RESOURCE"/>
+</resources>

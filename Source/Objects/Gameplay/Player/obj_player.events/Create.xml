@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Main variables.
+
+// Initialization flag:
+initialized = false;
+
+// Character IDs.
+player_index = global.player_id; // Who do we play as?
+player_type  = IS_PLAYER;        // Are we a Player or an AI?
+
+// Horizontal movement:
+x_allow         = true;     // Allows horizontal movement.
+x_speed         = 0;        // The current horizontal speed.
+x_speed_top     = 6;        // Horizontal top speed while on flat ground.
+x_speed_max     = 16;       // Fastest the player can move.
+g_speed         = 0;        // Stores the ground speed.
+x_acceleration  = 0.046875; // Horizontal acceleration on ground.
+x_deceleration  = 0.5;      // Horizontal deceleration on ground.
+x_slope_factor  = 0.125;    // Rate at which the player slows down on slopes.
+x_air_accel     = 0.09375;  // Acceleration value in the air.
+x_temp_accel    = 0;        // Stores temporal acceleration value.
+x_temp_decel    = 0;        // Stores temporal deceleration value.
+x_temp_friction = 0;        // Stores temporal friction value.
+x_limit         = false;    // Limits the horizontal speed.
+
+// Vertical movement:
+y_allow        = true;     // Allows vertical movement.
+y_speed        = 0;        // The current vertical speed.
+y_speed_max    = 16;       // Fastest the player can fall.
+y_acceleration = 0.21875;  // Force of gravity applied to the player.
+y_accel_common = 0.21875;  // Store original gravity value in case we change it ingame.
+y_limit        = true;     // Limits the vertical speed.
+
+// Samples.
+x_sample = 13; // Pixel limit to divide horizontal movement by.
+y_sample = 13; // Pixel limit to divide vertical movement by.
+
+// Terrain:
+ground          = false; // Checks if the player has grounded.
+angle           = 0;     // Returns the angle of the player.
+angle_relative  = 0;     // Returns the angle relative to gravity values.
+collision_layer = 0;     // Returns the layer the player is on.
+floor_mode      = 0;     // Returns the floor mode.
+platform_check  = false; // Checks if the player has landed on platforms.
+platform_frames = 30;    // Used to reset the platform check.
+
+// Flags:
+state               = STATE_DEFAULT; // Player's current state.
+input_alarm         = 0;             // Input alarm. (Used for slopes)
+input_alarm_dir     = 0;             // Which direction we're locking.
+input_lock_l        = false;         // Locks left input.
+input_lock_r        = false;         // Locks right input.
+input_lock_s        = false;         // Locks input after using a horizontal spring.
+launch_lock         = 0;             // Locks horizontal movement after launching off slopes.
+lock_timer          = 0;             // How long input is locked. Used on springs.
+tunnel_lock         = false;         // Locks the player when inside a tunnel.
+timer_up            = 0;             // Timer for looking up.
+timer_down          = 0;             // Timer for crouching.
+allow_look          = true;          // Allow crouching/looking up.
+shield              = 0;             // Players current shield.
+shield_obj          = noone;         // Players shield object.
+shield_state        = 0;             // Players shield state.
+shield_usable       = 0              // Is the shield usable?
+invincibility       = 0;             // Is the player invulnerable to hazards? (0 = No, 1 - After getting Hit, 2 - Invincibility Shield or Super Form)
+invincibility_timer = 0;             // How long invincibility lasts.
+physic_mode         = 0;             // Checks the current physic mode. (0 = Default, 1 = Underwater)
+speedshoe           = false;         // Are we wearing speed shoes?
+speedshoe_timer     = 0;             // How long speed shoes last.
+previous_x          = 0;             // Gets the previous x position.
+previous_y          = 0;             // Gets the previous y position.
+loop_direction      = 0;             // Keeps track in which direction we're going through a loop. Used for AI.
+
+// Terrain flags:
+platform_id = noone; // Returns the id of the platform we're on.
+swing_id    = noone; // Returns the id of the swing we're on.
+
+// Underwater:
+drown_timer   = 1800;  // How long it takes (in frames) for the character to drown.
+drown_counter = noone; // The number count down above the character while about to drown.
+bubble_timer  = 0;     // How long the character is stuck in the breathing state after touching a bubble.
+breath_timer  = 40;    // Needed for creating bubbles after we drowned.
+has_drowned   = false; // Checks if the character has drowned.
+
+// States:
+jump_strength  = -6.5;         // Player's jump strength.
+jump_release   = -4;           // Minimum strength the player can jump.
+jump_completed = false;        // Checks if the player has completed his jump.
+jump_lock      = false;        // Is the jump locked? (Means the direction cannot be altered while jumping)
+
+spindash_strength = 0;         // Current strength of the spindash.
+spindash_pitch    = 0;         // Used to change the spindash sound pitch.
+
+roll_deceleration = 0.125;     // Rolling deceleration.
+roll_friction     = 0.0234375; // Friction while rolling.
+roll_decel_up     = 0.078125;  // Deceleration while rolling up slopes.
+roll_decel_down   = 0.3125;    // Deceleration while rolling down slopes.
+
+skid_direction    = 0;         // Direction the player is skidding towards.
+
+grab_timer        = 0;         // Grab timer, prevents us from grabbing onto something as soon as we try to let go.
+grab_type         = 0;         // Grab type, see the grab scripts for more.
+grab_distance     = 0;         // How far we can travel.
+grab_moving       = 0;         // Checks if we're moving.
+grab_id           = 0;
+grab_x            = 0;
+grab_y            = 0;
+
+push_timer        = 0;         // Used to trigger pushing state.
+push_timer_max    = 3;
+
+death_timer       = -5;        // See death script in the step event.
+</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Character specific variables.
+
+// Sonic:
+allow_instashield  = false; // If true, we allow the player to use the instashield.
+allow_dropdash     = true;  // If true, we allow the player to use the dropdash.
+dropdash_flag      = 0;     // Returns the dropdash flag. (0 = Null, 1 = Charging, 2 = Ready)
+dropdash_timer     = 20;    // Frames it takes to charge dropdash.
+dropdash_speed     = 10;    // Base speed of the dropdash.
+dropdash_max_speed = 12;    // Maximum speed of the dropdash.
+
+allow_peelout = true; // If true, we allow the player to use the figure 8 move.
+peelout_flag  = 0;    // Used to keep Sonic in his figure 8 animation after performing it.
+peelout_timer = 0;    // Used while charging the figure 8 move.
+
+allow_homing        = true;  // If true, we allow the player to use the homing attack.
+homing_target       = noone; // Keeps track of the target object.
+homing_mode         = 0;     // Set the homing mode. (0 = Normal, 1 = Utopia like - Sonic doesn't come to a full stop after homing into a badnik or spring (disabled for monitors)).
+homing_speed        = 12;    // The speed at which Sonic should move towards a homing target.
+homing_distance     = 128;   // The max. distance to find a homing target.
+
+// Tails: 
+tails_flight_timer    = 0;     // How long we've been flying.
+tails_flight_duration = 480;   // How long we can fly.
+
+tails_tail_sprite     = noone; // Sprite for Tails tail.
+tails_tail_frame      = 0;     // Current tail frame.
+tails_tail_speed      = 0;     // Animation speed for the tail.
+tails_tail_x          = 0;     // X Position for the tail.
+tails_tail_y          = 0;     // Y Position for the tail.
+tails_tail_angle      = 1;     // Angle of the tail.
+tails_tail_direction  = 1;     // Direction of the tail.
+
+// Knuckles:
+glide_top_speed    = 24;    // Fastest Knuckles can move horizontally while gliding.
+glide_gravity      = 0.125; // The gravity used while gliding.
+glide_crouch_timer = 15;    // How long knuckles stays in his crouched state (after a drop)
+glide_turn_s       = 0;     // Special variable that stores Knuckles' speed when performing a glide turn.
+glide_turn_a       = 0;     // Special variable that stores Knuckles' angle when performing a glide turn.
+climb_ox           = 0;     // Position that returns the x position when grabbing. If it increases or decreases, we stop climbing.
+climb_speed        = 1;     // How fast Knuckles can climb up a wall.
+climb_frame_timer  = 6;     // Advances the climbing frame when it reaches 0.
+is_ledge_grabbing  = false; // Returns if we're ledge climbing.
+</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Input keys.
+input_up               = false;
+input_down             = false;
+input_right            = false;
+input_left             = false;
+input_action           = false;
+input_special          = false;
+
+input_up_pressed       = false;
+input_down_pressed     = false;
+input_right_pressed    = false;
+input_left_pressed     = false;
+input_action_pressed   = false;
+input_special_pressed  = false;
+
+input_up_released      = false;
+input_down_released    = false;
+input_right_released   = false;
+input_left_released    = false;
+input_action_released  = false;
+input_special_released = false;
+</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Animation variables.
+if (player_index == CHAR_SONIC)
+{
+    sprite = spr_sonic_idle;
+}
+if (player_index == CHAR_TAILS)
+{
+    sprite = spr_tails_idle;
+}
+if (player_index == CHAR_KNUCKLES)
+{
+    sprite = spr_knuckles_idle;
+}
+animation                 = "";
+animation_previous        = "";
+animation_frame           = 0;
+animation_start           = 0;
+animation_end             = 0;
+animation_loop            = 0;
+animation_speed           = 0;
+animation_repeat          = 0;
+animation_repeat_times    = 0;
+animation_linked_to       = "";
+animation_linked_frame    = 0;
+animation_flags_changed   = 0;
+animation_flags_finished  = 0;
+animation_direction       = 1;
+animation_color           = c_white;
+animation_angle           = 0;
+animation_angle_mod       = 0;
+animation_alpha           = 1;
+animation_offset_x        = 0;
+animation_offset_y        = 0;
+animation_rendering_speed = 0;
+animation_frame_count     = 0;
+</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Create camera and handle checkpoint respawn.
+
+// Checkpoint respawn.
+if (global.checkpoint_x != -1)
+{
+    x                = global.checkpoint_x;
+    y                = global.checkpoint_y;
+    global.game_time = global.checkpoint_t;
+}
+
+// Camera.
+camera = instance_create(x, y, obj_camera);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_stage_controller" type="RESOURCE"/>
+  <resource name="obj_instance_culling" type="RESOURCE"/>
+  <resource name="obj_indestructible" type="RESOURCE"/>
+  <resource name="obj_audio" type="RESOURCE"/>
+  <resource name="obj_screen_controller" type="RESOURCE"/>
+  <resource name="obj_gamepad_controller" type="RESOURCE"/>
+</resources>

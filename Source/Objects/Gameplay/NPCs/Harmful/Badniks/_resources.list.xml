@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="par_enemy" type="RESOURCE"/>
+  <resource name="obj_badnik_block" type="RESOURCE"/>
+  <resource name="obj_animal" type="RESOURCE"/>
+  <resource name="Examples" type="GROUP"/>
+</resources>

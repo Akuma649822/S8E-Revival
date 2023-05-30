@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="obj_electricity_spark" type="RESOURCE"/>
+  <resource name="obj_skid_dust" type="RESOURCE"/>
+  <resource name="obj_invincibility_sparkle" type="RESOURCE"/>
+  <resource name="obj_homing_target" type="RESOURCE"/>
+</resources>

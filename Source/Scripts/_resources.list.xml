@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Player" type="GROUP"/>
+  <resource name="Audio" type="GROUP"/>
+  <resource filename="Saving _ Loading" name="Saving / Loading" type="GROUP"/>
+  <resource name="Stage Data" type="GROUP"/>
+  <resource name="Utils" type="GROUP"/>
+  <resource name="Gamepad" type="GROUP"/>
+</resources>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="OTHER" id="10">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Rewards.
+
+// Rings:
+if (icon == 0)
+{
+    global.player_rings += 10;
+    audio_play_sound(SFX._general_ring, global.sfx_volume, 1, 0, 0);
+}
+
+// Bubble Shield:
+if (icon == 1)
+{
+    if (parent.shield != 0)
+    {
+        parent.shield = 0;
+        with (parent.shield_obj) instance_destroy();
+        parent.shield_obj = noone;
+    }
+    parent.shield = SHIELD_BUBBLE;
+    audio_play_sound(SFX._shield_get_bubble, global.sfx_volume, 1, 0, 0);
+}
+
+// Fire Shield:
+if (icon == 2)
+{
+    if (parent.shield != 0)
+    {
+        parent.shield = 0;
+        with (parent.shield_obj) instance_destroy();
+        parent.shield_obj = noone;
+    }
+    parent.shield = SHIELD_FIRE;
+    audio_play_sound(SFX._shield_get_flame, global.sfx_volume, 1, 0, 0);
+}
+
+// Electricity Shield:
+if (icon == 3)
+{
+    if (parent.shield != 0)
+    {
+        parent.shield = 0;
+        with (parent.shield_obj) instance_destroy();
+        parent.shield_obj = noone;
+    }
+    parent.shield = SHIELD_ELECTRICITY;
+    audio_play_sound(SFX._shield_get_electricity, global.sfx_volume, 1, 0, 0);
+}
+
+// Life:
+if (icon == 4)
+{
+    global.player_lives += 1;
+    global.sfx_volume    = SFX.backup_bgm_volume;
+    audio_play_sound(SFX._player_life, global.sfx_volume, 1, 0, 0);
+}
+
+// Invincibility:
+if (icon == 5)
+{
+    parent.invincibility       = 2;
+    parent.invincibility_timer = 900;
+    if (global.bgm_volume &lt;= 0.00 &amp;&amp; audio_is_playing(SFX._player_life))
+    {
+        global.bgm_volume = 1;
+    }
+    audio_play_sound(SFX._jingle_invincibility, global.bgm_volume, 1, 1, 0);
+}
+
+// Sneakers:
+if (icon == 6)
+{
+    parent.speedshoe_timer = 900;
+    parent.speedshoe       = 1;
+}
+
+// Eggman:
+if (icon == 7)
+{
+    with (parent)
+    {
+        player_state_hurt(other, false);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

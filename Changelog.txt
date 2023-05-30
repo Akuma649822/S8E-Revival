@@ -1,0 +1,124 @@
+[Engine Changes]
+
+Miscellaneous:
+• Restructured all code using beautifier.io.
+• Moved different group folders around.
+• Instance deactivation now only occurs every 10 frames instead of every frame. Moreover, terrain is now always active to prevent offscreen collision issues.
+• Room views are automatically set during initialization instead of having to manually set it yourself in each room.
+• Renamed the "do_time" global variable to "add_time".
+• Renamed the "obj_level_controller" object to "obj_stage_controller".
+• Added a dedicated HUD object (called "obj_hud") and moved the HUD drawing code from obj_stage_controller to this dedicated object.
+• Added a dedicated window_resize() script that sets the screen resolution when called.
+• Added randomize() usage at the start of the game to randomize the seed.
+• Added DBGHELP.dll to fix issues with the thread scheduler resolution on modern Windows machines (credit to omicronrex - https://github.com/omicronrex/gms_scheduler_fix).
+
+Input management:
+• Renamed mentions of the "enter" key to mentions of the "start" key.
+• Added JoyDLL to handle controller inputs instead of Game Maker 8.1's native controller support as the latter is very slow and quite limited.
+• There are now 2 separate input bind checking variables for keyboards and controllers to fix mapping problems.
+• Controller buttons are now unmapped by default at the start of the game to prevent mapping shenanigans.
+• Renamed gamepad_check() to joystick_get_button(), and overhauled the script to check for each button press in a "for" loop rather than doing so manually.
+
+Audio:
+• Replaced the usage of string_replace_all() with filename_change_ext() in the audio_initialize() script (makes it more convenient to load sounds/music with different filetypes since you're not checking for individual filetypes).
+• Removed the audio_add() script and replaced its calls with caster_load().
+• Simplified the audio_play_sound(), audio_is_playing(), audio_stop() and audio_set_volume() scripts.
+• Using audio_play_music() will now store the specified music in a "bgm_id" global variable.
+• Added 2 new audio scripts: audio_set_pitch() and audio_get_pitch().
+• Renamed the "zone_my_" prefixes of the audio controller's variables to "backup_".
+• Removed the volume adjustment of Tails' flight sounds at the bottom of the audio controller's Step event.
+• Added code to free fonts in the "Game End" event of the audio controller object.
+
+Zone data (these ideas were taken from the Harinezumi framework):
+• Stage information is now stored in a dedicated stage_initialization() script instead of having to manually do it yourself in a level's room creation code. To add zone data, simply add a separate case for your room and use the new stage_set_data() script.
+• The culling object, backgrounds, title cards, etc. are now created in the stage_initialization() script.
+• The water object is now only created when you've specified that the level should have water in it.
+
+Player:
+• Re-written the player_collision_check() script to make use of a "switch" statement when checking for collision sensors instead of using multiple "if" statements.
+• Renamed player_angle() to player_set_angle().
+• Renamed player_gspeed() to player_get_gspeed().
+• Commented out the roll jump lock feature in player_state_jump().
+• Renamed the player_state_edgewobble() script and the STATE_EDGEWOBBLE constant to player_state_balance() and STATE_BALANCE respectively.
+• Replaced the argument variables in the player_collision_check() and animation_tail_apply() scripts with their respective argument array indexes.
+• All object handling scripts are now stored in a dedicated player_handle_list() script to be used in the "Collision Detecting and Movement" portion of the players' Step events (this idea was taken from the Harinezumi framework).
+• Removed the use of arguments for the player_handle_monitors() script.
+• Removed all animation_index_*() scripts and added a new animation_add() script that defines each animation for the player and how each characters' sprites should be handled in given animations (this idea was taken from the Harinezumi framework).
+• Previously, when the title card would unlock player control, it would do so by flagging the "x_allow" and "y_allow" variables to "true". This has been changed so that only the "initialized" variable is flagged is "true" (set to "false" by default), and the "x_allow" and "y_allow" variables are now flagged as "true" by default.
+• Changed the order of animation handling and boundary/platform checking in the players' End Step events such that the latter takes place first.
+• Removed the resetting of the 100 ring life check when the player gets hit.
+
+NPCs:
+• The Motobug's Step event now only runs when it's inside the view.
+• Replaced the "move" sound of the Data Select cursor.
+
+[Gameplay Changes]
+
+Global:
+• Added increasing/decreasing pitch for music depending on whether the player's speedshoe is active or not.
+• Controller buttons are now disabled by default - you'll have to remap them yourself in the options menu (this fixes default mapping shenanigans).
+• Fixed the options menu not recognising the "0th" button of connected controllers when rebinding inputs (e.g. for an Xbox One controller, this would be the "A" button).
+• Patched the test executable with the Debugger Helper tool to fix performance issues on modern versions of Windows (credit to omicronrex once again - https://github.com/omicronrex/dbghelper).
+
+Menu/HUD/Interface:
+• Fixed the options menu not displaying 92% when adjusting sound/music volumes.
+• Fixed the camera not centering on the Data Select cursor.
+• Added Sonic 1 & Sonic 2's title cards, the latter of which was ported from the Sonic MAX framework and patched up.
+• Fixed the colon in the "time" section of the HUD being differently-colored from the HUD's font.
+• Added a proper pause menu.
+• Added a Green Hill Zone example parallax background that was ported over from the Flicky 8 framework.
+• Fixed the results menu incorrectly totalling up the final score when skipping the "counting down" section (this fix was backported from the Harinezumi framework).
+
+Player:
+• Removed the roll jump lock.
+• Increased the weakening power of the spindash so that it's not as overpowered when the player releases one.
+• Fixed the player jittering on tile edges by slightly increasing their hitbox size (this fix was backported from the Harinezumi framework).
+• Fixed the AI player being able to collect tossed rings when the main player is hit.
+• Fixed the AI player not changing to their "rolling" or "dropping" animations if their character was Tails or Knuckles respectively.
+• Fixed Sonic being able to perform a dropdash on the top of monitors.
+• Fixed Knuckles not reverting to his default state when colliding with a horizontal spring whilst gliding/sliding.
+• Fixed the player's controls not being locked when entering a tunnel ungrounded.
+• Moved the position of the tunnel sensors so that the player is not forced into a tunnel when they're on the outside of its entrances.
+• Fixed the player not being able to move vertically when dying whilst standing on a moving platform.
+• Fixed the checkpoint's variables not resetting when the player gets a game over.
+• Fixed the player sometimes failing to launch off ramps when outrunning the camera.
+• Fixed the camera not centering on the goalpost when Sonic is performing his peelout ability.
+• The goalpost now triggers when the player jumps above it.
+
+• Overhauled the player's "idle" animation playback so that it triggers at the same time for each character.
+• Tails' "yawning" animation no longer loops indefinitely.
+• Extended Knuckles' "idle" animation.
+• Fixed positioning of Tails' tails when flying and running.
+• Replaced the animation of Tails' tails when he's in his "pushing" animation.
+• Removed the animation of Tails' tails when he's in his "balancing" animation.
+• Fixed Tails' tails rotating when jumping off a downward-curving slope and taking flight.
+• Fixed 1 frame of Knuckles' "ledge climb" animation being incorrectly aligned.
+• Fixed the vertical drawing position of each characters' "spring" and "pushing" animations.
+• Fixed 1 frame of Sonic's "peelout" animation being 1 pixel lower than the rest.
+• Fixed the "balancing" animation sometimes playing back at a slower animation speed.
+• Removed the spindash dust when Sonic charges up a peelout.
+• Added a dust effect for when Sonic releases a dropdash.
+
+• Fixed multiple issues with Sonic's homing attack and added additional checks when triggering:
+    > Sonic must now be above the bottom of the target's hitbox before locking on to badniks and monitors, and 16 pixels above the Y position of springs before locking on to those. Furthermore, he must be facing the target.
+    > The homing reticle will now automically destroy itself if neither of the aforementioned conditions are met.
+    > Fixed Sonic getting stuck into terrain when triggering a homing attack very late due to the homing reticle not destroying itself previously.
+    > Fixed Sonic not being able to perform a homing dash when there's a piece of terrain between him and a target.
+• Added various release speeds for when Sonic releases a dropdash depending on his current angle (this was backported from the Harinezumi framework).
+• Fixed Sonic's dropdash state not resetting when changing state.
+
+• Fixed Tails being able to clip into upward-curving slopes when flying into one (this was backported from the Harinezumi framework).
+
+• Fixed Knuckles animating weirdly when climbing whilst pressing the up and down buttons at the same time.
+• Fixed Knuckles not being able to climb down to the ground (this fix was backported from the Harinezumi framework).
+
+NPCs:
+• Fixed Motobugs sometimes clipping into the terrain when offscreen.
+• Added the Chopper badnik from Sonic 1 and the Bubbles badnik from Sonic 3.
+• Added animals that appear when badniks are destroyed.
+• Fixed springs placed in terrain sometimes being visible.
+
+Shields:
+• Fixed the vertical drawing position of all shields.
+• Bouncing with the bubble shield now causes it to display its "squished" frame as opposed to its "idle" frame.
+• Removed repeated use of the bubble shield when colliding with an upwards spring.

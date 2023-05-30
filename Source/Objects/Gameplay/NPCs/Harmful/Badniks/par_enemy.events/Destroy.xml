@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="DESTROY" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Explode.
+
+// Create Flicky:
+instance_create(x, y, obj_animal);
+
+// Add Score:
+global.player_score += score_multiplier(true, x, y - 10);
+
+// Explosion Effect:
+dummy_effect_create(spr_explosion, 0.2, x, y, 5, 0);
+
+// Play Destroyed Sound:
+audio_play_sound(SFX._general_break, global.sfx_volume, 1, 0, 0);
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="player_state_jump" type="RESOURCE"/>
+  <resource name="player_state_skid" type="RESOURCE"/>
+  <resource name="player_state_lookup" type="RESOURCE"/>
+  <resource name="player_state_crouch" type="RESOURCE"/>
+  <resource name="player_state_spindash" type="RESOURCE"/>
+  <resource name="player_state_roll" type="RESOURCE"/>
+  <resource name="player_state_grab" type="RESOURCE"/>
+  <resource name="player_state_hurt" type="RESOURCE"/>
+  <resource name="player_state_shield" type="RESOURCE"/>
+  <resource name="player_state_push" type="RESOURCE"/>
+  <resource name="player_state_balance" type="RESOURCE"/>
+  <resource name="player_state_respawn" type="RESOURCE"/>
+  <resource name="Sonic only" type="GROUP"/>
+  <resource name="Tails only" type="GROUP"/>
+  <resource name="Knuckles only" type="GROUP"/>
+</resources>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Set inputs.
+
+// Exit if not initialized or death or respawning.
+if (!initialized || state == STATE_DEATH || state == STATE_RESPAWN) exit;
+
+// Set parent to follow.
+follow_parent = obj_player;
+
+// Check follower coordinates and move according to that.
+if (instance_exists(follow_parent))
+{
+    // Move to the right.
+    if (follow_parent.loop_direction != -1)
+    {
+        if ((x &lt; follow_parent.x - 10 || (follow_parent.y &lt; y - 50 &amp;&amp; follow_parent.ground &amp;&amp; follow_parent.x_speed &gt; 0)) &amp;&amp;
+            (follow_parent.y &gt;= y - 50 || !follow_parent.ground || follow_parent.x_speed &gt;= 0))
+        {
+            input_right = true;
+        }
+        else
+        {
+            input_right = false;
+        }
+    }
+
+    // Move to the left.
+    if (follow_parent.loop_direction != 1)
+    {
+        if ((x &gt; follow_parent.x + 10 || (follow_parent.y &lt; y - 50 &amp;&amp; follow_parent.ground &amp;&amp; follow_parent.x_speed &lt; 0)) &amp;&amp;
+            (follow_parent.y &gt;= y - 50 || !follow_parent.ground || follow_parent.x_speed &lt;= 0))
+        {
+            input_left = true;
+        }
+        else
+        {
+            input_left = false;
+        }
+    }
+
+    // Reset delay timer.
+    if (x_speed != 0 || y_speed != 0)
+    {
+        ai_state_delay = 16;
+    }
+
+    // Lookup.
+    if (ground &amp;&amp; follow_parent.state == STATE_LOOKUP)
+    {
+        if (state == STATE_DEFAULT)
+        {
+            if (ai_state_delay &gt; 0)
+            {
+                ai_state_delay -= 1;
+            }
+            else
+            {
+                ai_state_delay = 16;
+                state          = STATE_LOOKUP;
+            }
+        }
+        if (state == STATE_LOOKUP)
+        {
+            input_up = follow_parent.input_up;
+        }
+    }
+
+    // Crouch &amp; Spindash:
+    if (ground &amp;&amp; follow_parent.state == STATE_CROUCH)
+    {
+        if (state == STATE_DEFAULT)
+        {
+            if (ai_state_delay &gt; 0)
+            {
+                ai_state_delay -= 1;
+            }
+            else
+            {
+                ai_state_delay = 16;
+                state          = STATE_CROUCH;
+                input_down     = true;
+            }
+        }
+        if (state == STATE_CROUCH)
+        {
+            input_up   = follow_parent.input_up;
+            input_down = follow_parent.input_down;
+        }
+    }
+    if (ground &amp;&amp; follow_parent.state == STATE_SPINDASH)
+    {
+        if (state == STATE_CROUCH)
+        {
+            if (ai_state_delay &gt; 0)
+            {
+                ai_state_delay -= 1;
+            }
+            else
+            {
+                ai_state_delay = 16;
+                state          = STATE_SPINDASH;
+            }
+        }
+        if (state == STATE_SPINDASH)
+        {
+            input_down           = follow_parent.input_down;
+            input_action_pressed = follow_parent.input_action_pressed;
+        }
+    }
+
+    // Jump:
+    if ((ground || state == STATE_GRAB) &amp;&amp; follow_parent.y &lt; y - 50 &amp;&amp; !follow_parent.ground)
+    {
+        input_action_pressed = true;
+    }
+    else
+    {
+        input_action_pressed = false;
+    }
+
+    if (state == STATE_JUMP)
+    {
+        input_action = true;
+    }
+    else
+    {
+        input_action = false;
+    }
+
+    // If the AI is stuck pushing a wall, make him jump.
+    if (follow_parent.x &lt; x - 64 || follow_parent.x &gt; x + 64)
+    {
+        if (state == STATE_PUSH)
+        {
+            input_action_pressed = true;
+        }
+    }
+
+    // Respawn.
+    if (x &lt; view_xview - 96 || x &gt; view_xview + view_wview + 96)
+    {
+        if (state != STATE_RESPAWN)
+        {
+            if (obj_player.x &gt; view_xview + view_wview / 2)
+            {
+                x = view_xview - 50;
+                y = view_yview - 50;
+            }
+            else
+            {
+                x = view_xview + view_wview + 50;
+                y = view_yview - 50;
+            }
+            player_state_respawn(1);
+            death_timer = -5;
+        }
+    }
+}
+
+// Input alarm.
+if (input_alarm)
+{
+    if (input_alarm_dir == 1)
+    {
+        input_right = false;
+    }
+    if (input_alarm_dir == -1)
+    {
+        input_left = false;
+    }
+}
+
+// Input locks (spring).
+if (input_lock_l)
+{
+    input_left = false;
+}
+if (input_lock_r)
+{
+    input_right = false;
+}
+</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Modify physics.
+
+// Previous Positions:
+previous_x = x;
+previous_y = y;
+
+// Switch Physic Modes:
+if (global.water_position != -1)
+{
+    if (y &lt; global.water_position)
+    {
+        if (physic_mode != 0)
+        {
+            physic_mode = 0;
+        }
+    }
+    if (y &gt; global.water_position)
+    {
+        if (physic_mode != 1)
+        {
+            physic_mode = 1;
+        }
+    }
+}
+
+// Get/Set physics for each character.
+if (player_index == CHAR_SONIC)
+{
+    player_physics_sonic();
+}
+
+if (player_index == CHAR_TAILS)
+{
+    player_physics_tails();
+}
+
+if (player_index == CHAR_KNUCKLES)
+{
+    player_physics_knuckles();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

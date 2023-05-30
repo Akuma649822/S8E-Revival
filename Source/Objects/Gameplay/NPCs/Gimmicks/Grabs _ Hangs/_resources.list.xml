@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="par_grab" type="RESOURCE"/>
+  <resource name="obj_grab_static" type="RESOURCE"/>
+  <resource name="obj_grab_pole" type="RESOURCE"/>
+  <resource name="obj_grab_distance" type="RESOURCE"/>
+</resources>

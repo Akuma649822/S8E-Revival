@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Animation and depth.
+
+// Animation:
+if (handle.shield_state == 0)
+{
+    image_speed = 0.5;
+}
+if (handle.shield_state == 1)
+{
+    image_speed = 0;
+}
+if (handle.shield_state == 2)
+{
+    image_speed = 0.25;
+    if (image_index &gt; 5)
+    {
+        handle.shield_state = 0;
+        sprite_index        = spr_shield_bubble;
+    }
+}
+
+// Set depth:
+depth = -20;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

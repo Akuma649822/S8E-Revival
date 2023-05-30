@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Bridges" type="GROUP"/>
+  <resource name="Corkscrews" type="GROUP"/>
+  <resource filename="Grabs _ Hangs" name="Grabs / Hangs" type="GROUP"/>
+  <resource filename="Moving Platforms _ Swing" name="Moving Platforms / Swing" type="GROUP"/>
+  <resource name="Breakable" type="GROUP"/>
+</resources>

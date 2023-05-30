@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="par_bridge" type="RESOURCE"/>
+  <resource name="obj_example_bridge_6" type="RESOURCE"/>
+  <resource name="obj_example_bridge_12" type="RESOURCE"/>
+  <resource filename="Don't use_" name="Don't use." type="GROUP"/>
+</resources>

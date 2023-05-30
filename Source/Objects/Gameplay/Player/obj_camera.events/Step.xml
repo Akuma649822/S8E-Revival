@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Camera lag.
+// Used to stop the camera from moving, examples being when releasing a spindash or using a fire shield.
+if (cam_lag &gt; 0) cam_lag -= 3;
+if (cam_lag &lt; 0) cam_lag = 0;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

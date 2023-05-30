@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Trigger.
+if (instance_exists(obj_player))
+{
+    if (instance_place(x, y, obj_player) || obj_player.x &gt; x)
+    {
+        if (!sign_post_activated)
+        {
+            // Activate and play sound.
+            sign_post_activated = true;
+            audio_play_sound(SFX._general_signpost, global.sfx_volume, 1, 0, 0);
+
+            // Disable timer.
+            global.add_time = false;
+        }
+    }
+}
+</argument>
+      </arguments>
+    </action>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Everything.
+
+// Exit if finished.
+if (sign_post_finished) exit;
+
+// Set camera position.
+if (in_view())
+{
+    with (obj_camera)
+    {
+        cam_handle  = other.sign_post_camera;
+        limit_left  = other.sign_post_camera.x - view_wview / 2;
+        limit_right = other.sign_post_camera.x + view_wview / 2;
+    }
+}
+
+// Spin.
+if (sign_post_activated)
+{
+    if (sign_post_duration != 0)
+    {
+        if (sign_post_timer != 0)
+        {
+            sign_post_timer -= 1;
+        }
+        else
+        {
+            sign_post_timer = 2;
+            image_index    += 1;
+            if (sign_post_duration mod 4 == 0)
+            {
+                dummy_effect_create(spr_invincibility_sparkle, 0.6, x - 24 + (irandom_range(0, 3) * 16), y - 48 + (irandom_range(0, 2) * 16), -1, 0);
+            }
+        }
+    }
+    else // Finish.
+    {
+        if (!instance_exists(obj_results))
+        {
+            sign_post_finished = true;
+            image_index        = obj_player.player_index * 4;
+            instance_create(x, y, obj_results);
+        }
+    }
+    sign_post_duration -= 1;
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

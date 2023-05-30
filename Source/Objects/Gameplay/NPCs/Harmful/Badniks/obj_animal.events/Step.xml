@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Movement.
+
+// Run if inside the view:
+if (in_view())
+{
+    // Check for grounding:
+    if (place_meeting(x, y + y_spd, par_solid) &amp;&amp; y_spd &gt;= 0)
+    {
+        y_spd = -5;
+        if (x_spd == 0)
+        {
+            x_spd    = image_xscale * 2;
+            alarm[0] = 1;
+        }
+    }
+    else
+    {
+        // Apply gravity:
+        y_spd += y_gravity;
+    }
+
+    // Change direction:
+    if (place_meeting(x + x_spd, y, par_solid))
+    {
+        while (!place_meeting(x + sign(x_spd), y, par_solid))
+        {
+            x += sign(x_spd);
+        }
+        image_xscale *= -1;
+        x_spd        *= -1;
+    }
+
+    // Update positions:
+    x += x_spd;
+    y += y_spd;
+}
+else // Otherwise, destruct.
+{
+    instance_destroy();
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

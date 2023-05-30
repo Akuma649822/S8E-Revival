@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="player_physics_sonic" type="RESOURCE"/>
+  <resource name="player_physics_tails" type="RESOURCE"/>
+  <resource name="player_physics_knuckles" type="RESOURCE"/>
+  <resource name="player_get_gspeed" type="RESOURCE"/>
+</resources>

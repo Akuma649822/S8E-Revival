@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="CREATE" id="0">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Variables.
+title_y           = 0;
+title_menu_option = 0;
+title_menu_active = 0;
+title_menu_string = "START";
+alarm[0]          = 15;
+
+// Move logo to the center of the screen.
+x = global.screen_width / 2;
+y = global.screen_height / 2;
+
+// Image speed.
+image_speed = 0.5;
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

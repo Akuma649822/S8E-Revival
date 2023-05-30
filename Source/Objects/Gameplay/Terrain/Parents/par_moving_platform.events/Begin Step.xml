@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<event category="STEP" id="1">
+  <actions>
+    <action id="603" library="1">
+      <!--action name: Code-->
+      <kind>CODE</kind>
+      <allowRelative>false</allowRelative>
+      <question>false</question>
+      <canApplyTo>true</canApplyTo>
+      <actionType>CODE</actionType>
+      <functionName/>
+      <relative>false</relative>
+      <not>false</not>
+      <appliesTo>.self</appliesTo>
+      <arguments>
+        <argument kind="STRING">/// Movement &amp; Player position.
+
+// Activate:
+if (!active)
+{
+    if (in_view()) active = true;
+}
+
+// Only run if active.
+if (!active) exit;
+
+// Set previous position.
+previous_x = x;
+previous_y = y;
+
+// Set Horizontal/Vertical speed.
+if (x_spd &lt; xd_speed)
+{
+    xd_speed -= 0.025;
+}
+else if (x_spd &gt; xd_speed)
+{
+    xd_speed += 0.025;
+}
+
+if (y_spd &lt; yd_speed)
+{
+    yd_speed -= 0.025;
+}
+else if (y_spd &gt; yd_speed)
+{
+    yd_speed += 0.025;
+}
+
+x_speed += xd_speed;
+y_speed += yd_speed;
+
+x = floor(relative_x + x_speed);
+y = floor(relative_y + y_speed);
+
+// Update player position.
+if (instance_exists(obj_player))
+{
+    if (obj_player.ground &amp;&amp; obj_player.platform_id == id &amp;&amp; obj_player.state != STATE_DEATH)
+    {
+        obj_player.x += (x - previous_x);
+        obj_player.y  = ((y - sprite_yoffset) - platform_offset);
+    }
+}
+
+if (instance_exists(obj_ai))
+{
+    if (obj_ai.ground &amp;&amp; obj_ai.platform_id == id &amp;&amp; obj_ai.state != STATE_DEATH)
+    {
+        obj_ai.x += (x - previous_x);
+        obj_ai.y  = ((y - sprite_yoffset) - platform_offset);
+    }
+}
+</argument>
+      </arguments>
+    </action>
+  </actions>
+</event>

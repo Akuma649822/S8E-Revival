@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+  <resource name="Engine Boot" type="GROUP"/>
+  <resource name="Gameplay" type="GROUP"/>
+  <resource filename="Menus _ Continue" name="Menus / Continue" type="GROUP"/>
+  <resource filename="Misc_" name="Misc." type="GROUP"/>
+</resources>
