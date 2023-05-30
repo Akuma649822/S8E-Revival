@@ -39,7 +39,7 @@ For controller handling:
 
 # Credits
 - Coding: AleksNB, F4LK, John-Kun, Tpot, Akuma649822.
-  > Additional credits to those that helped with the development of the Sonic MAX, GMate, Flicky/8 and the S8E frameworks as well since S8E was a re-write of those engines, and S8E V3.1 uses some code from them.
+  > Additional credits to those that helped with the development of the Sonic MAX, GMate, Flicky/8, S8E and Harinezumi frameworks as well since S8E was a re-write of those engines (excl. HZ), and S8E V3.1 uses some code from them.
 - Beta testing: somerandomusername.
 - GmkSplitter: Medo42.
 - DBGHelp.dll / Debugger Helper: omicronrex.
