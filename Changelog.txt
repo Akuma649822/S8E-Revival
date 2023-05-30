@@ -96,6 +96,7 @@ Player:
 • Fixed the vertical drawing position of each characters' "spring" and "pushing" animations.
 • Fixed 1 frame of Sonic's "peelout" animation being 1 pixel lower than the rest.
 • Fixed the "balancing" animation sometimes playing back at a slower animation speed.
+• Fixed Sonic and Knuckles' "running" animations not animating when set on tile edges.
 • Removed the spindash dust when Sonic charges up a peelout.
 • Added a dust effect for when Sonic releases a dropdash.
 
