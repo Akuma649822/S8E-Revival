@@ -30,8 +30,8 @@ For audio playback:
 
 For controller handling:
 - You'll have to rename the scripts in the "joydll-transparent" group since they conflict with the joystick_* functions of the same names.
-- If you're using Studio 1.4.1772+, you don't need to change anything in the scripts since those were the last few versions to re-introduce the variable_* functions (which JoyDLL makes use of).
-- If you're using an older version of Studio, you'll have to replace JoyDLL with Studio's native controller functions since older versions lack the aforementioned variable_* functions.
+- If you're using a version of Studio older than 1.4.1772, you'll need to remove the line that references the variable_global_exists() function in the joy_init() script.
+- You may or may not choose to use Studio's gamepad functions instead of JoyDLL.
 
 # Known Issues
 - The player is unable to grab onto slopes at specific angles.
