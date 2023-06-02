@@ -4,8 +4,8 @@ This is an edited version of the 3.0 build of the S8E framework (https://drive.g
 To load the project, you need to have the Standard edition of Game Maker 8.1.141. Older versions won't work as the project uses the clamp() and lerp() functions that were introduced in that version.
 
 # Changes
-For the list of changes between S8E V3.0 and V3.1, see the changelog:
-https://github.com/Akuma649822/S8E-V3.1/blob/main/Changelog.txt
+For the list of changes between S8E V3.0 and Revival, see the changelog:
+https://github.com/Akuma649822/S8E-Revival/blob/main/Changelog.txt
 
 # Building Guide
 You can either download the .gm81 file from the "Releases section", or use GmkSplitter to compile the "Source" folder from the main branch back into a .gm81: https://github.com/Medo42/Gmk-Splitter.
@@ -13,7 +13,7 @@ You can either download the .gm81 file from the "Releases section", or use GmkSp
 Make sure you have the Caster audio extension downloaded and installed in GM8.1, as well as placing Caster's DLLs and JoyDLL's DLLs in the project's directory (all of which can be found in the "Required Files" folder of the main branch, or the .zip included in the "Releases" section).
 
 # GameMaker: Studio Compatibility
-S8E V3.1 is mostly compatible with GameMaker: Studio, however, you'll need to make some changes with audio playback and controller handling before importing the project.
+S8E Revival is mostly compatible with GameMaker: Studio, however, you'll need to make some changes with audio playback and controller handling before importing the project.
 
 For audio playback:
 - You'll have to add each sound and music file from the "data\audio" directory into the project, and you'll need to delete the audio_initialize() script.
@@ -39,7 +39,7 @@ For controller handling:
 
 # Credits
 - Coding: AleksNB, F4LK, John-Kun, Tpot, Akuma649822.
-  > Additional credits to those that helped with the development of the Sonic MAX, GMate, Flicky/8, S8E and Harinezumi frameworks as well since S8E was a re-write of those engines (excl. HZ), and S8E V3.1 uses some code from them.
+  > Additional credits to those that helped with the development of the Sonic MAX, GMate, Flicky/8, S8E and Harinezumi frameworks as well since S8E was a re-write of those engines (excl. HZ), and S8E Revival uses some code from them.
 - Beta testing: somerandomusername.
 - GmkSplitter: Medo42.
 - DBGHelp.dll / Debugger Helper: omicronrex.
