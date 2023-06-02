@@ -342,29 +342,32 @@ if (!ground)
 }
 
 // Fall off the ground if the edges aren't colliding:
-if (ground &amp;&amp; angle != 0)
+repeat (_steps)
 {
-    if (!player_collision_check(COL_LEFT_EDGE, x, y, angle) || !player_collision_check(COL_RIGHT_EDGE, x, y, angle))
+    if (ground &amp;&amp; angle != 0)
     {
-        // Launch off slopes:
-        if (floor_mode == 1 || floor_mode == 3)
+        if (!player_collision_check(COL_LEFT_EDGE, x, y, angle) || !player_collision_check(COL_RIGHT_EDGE, x, y, angle))
         {
-            // Set speeds:
-            y_speed = -(dsin(angle_relative) * g_speed);
-            x_speed =   dcos(angle_relative) * x_speed;
+            // Launch off slopes:
+            if (floor_mode == 1 || floor_mode == 3)
+            {
+                // Set speeds:
+                y_speed = -(dsin(angle_relative) * g_speed);
+                x_speed =   dcos(angle_relative) * x_speed;
 
-            // Lock horizontal movement:
-            launch_lock = 3;
+                // Lock horizontal movement:
+                launch_lock = 3;
 
-            // Change flags:
-            ground        = false;
-            shield_usable = false;
-        }
-        else // Fall off tiles.
-        {
-            ground  =  false;
-            y_speed = -dsin(angle) * x_speed;
-            x_speed =  dcos(angle) * x_speed;
+                // Change flags:
+                ground        = false;
+                shield_usable = false;
+            }
+            else // Fall off tiles.
+            {
+                ground  =  false;
+                y_speed = -dsin(angle) * x_speed;
+                x_speed =  dcos(angle) * x_speed;
+            }
         }
     }
 }
@@ -953,10 +956,10 @@ if (state != STATE_DEATH &amp;&amp; !instance_exists(obj_results) || state == ST
             drown_timer -= 1;
         }
 
-        // Start the drowning theme.
+        // Create the drowning counter.
         if (drown_timer == 650)
         {
-            if (!instance_exists(obj_water_alarm))
+            if (instance_number(obj_water_alarm) &lt; 2)
             {
                 drown_counter        = instance_create(x, y - 32, obj_water_alarm);
                 drown_counter.parent = id;
@@ -994,8 +997,8 @@ if (state != STATE_DEATH &amp;&amp; !instance_exists(obj_results) || state == ST
                 else
                 {
                     bubble_timer = 0;
-                    animation = "WALK";
-                    state = STATE_DEFAULT;
+                    animation    = "WALK";
+                    state        = STATE_DEFAULT;
                 }
                 drown_timer = 1800;
                 
@@ -1003,10 +1006,6 @@ if (state != STATE_DEATH &amp;&amp; !instance_exists(obj_results) || state == ST
                 {
                     with (drown_counter) instance_destroy();
                     drown_counter = noone;
-                }
-                if (audio_is_playing(SFX._jingle_drown))
-                {
-                    audio_stop(SFX._jingle_drown);
                 }
             }
             else
@@ -1025,15 +1024,6 @@ if (state != STATE_DEATH &amp;&amp; !instance_exists(obj_results) || state == ST
         if (state != STATE_BREATH)
         {
             bubble_timer = 0;
-        }
-
-        // Alarm sounds.
-        if (drown_timer mod 400 == 0)
-        {
-            if (!audio_is_playing(SFX._jingle_drown))
-            {
-                audio_play_sound(SFX._general_alarm_count, global.sfx_volume, 1, 0, 0);
-            }
         }
 
         // Air bubbles. 

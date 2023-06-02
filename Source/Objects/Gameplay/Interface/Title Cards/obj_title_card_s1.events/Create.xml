@@ -16,7 +16,7 @@
         <argument kind="STRING">/// Variables.
 
 // State:
-tc_state         = 0;
+tc_state         = 1;
 tc_wait_timer[1] = 120;
 tc_wait_timer[2] = 75;
 

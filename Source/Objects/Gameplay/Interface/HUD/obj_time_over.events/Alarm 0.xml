@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="OTHER" id="5">
+<event category="ALARM" id="0">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,12 +13,9 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">/// Delete the snapshot if it still exists.
-// We do this when restarting/exiting the level to prevent a memory leak.
-if (background_exists(game_snapshot))
-{
-    background_delete(game_snapshot);
-}
+        <argument kind="STRING">/// Play jingle.
+audio_play_sound(SFX._jingle_gameover, global.bgm_volume, 1, 0, 0);
+trigger = true;
 </argument>
       </arguments>
     </action>

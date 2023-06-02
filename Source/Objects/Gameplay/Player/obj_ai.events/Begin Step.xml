@@ -73,13 +73,13 @@ if (instance_exists(follow_parent))
                 state          = STATE_LOOKUP;
             }
         }
-        if (state == STATE_LOOKUP)
-        {
-            input_up = follow_parent.input_up;
-        }
+    }
+    if (state == STATE_LOOKUP)
+    {
+        input_up = follow_parent.input_up;
     }
 
-    // Crouch &amp; Spindash:
+    // Crouch.
     if (ground &amp;&amp; follow_parent.state == STATE_CROUCH)
     {
         if (state == STATE_DEFAULT)
@@ -95,12 +95,14 @@ if (instance_exists(follow_parent))
                 input_down     = true;
             }
         }
-        if (state == STATE_CROUCH)
-        {
-            input_up   = follow_parent.input_up;
-            input_down = follow_parent.input_down;
-        }
     }
+    if (state == STATE_CROUCH)
+    {
+        input_up   = follow_parent.input_up;
+        input_down = follow_parent.input_down;
+    }
+
+    // Spindash.
     if (ground &amp;&amp; follow_parent.state == STATE_SPINDASH)
     {
         if (state == STATE_CROUCH)
@@ -115,11 +117,11 @@ if (instance_exists(follow_parent))
                 state          = STATE_SPINDASH;
             }
         }
-        if (state == STATE_SPINDASH)
-        {
-            input_down           = follow_parent.input_down;
-            input_action_pressed = follow_parent.input_action_pressed;
-        }
+    }
+    if (state == STATE_SPINDASH)
+    {
+        input_down           = follow_parent.input_down;
+        input_action_pressed = follow_parent.input_action_pressed;
     }
 
     // Jump:
@@ -151,7 +153,7 @@ if (instance_exists(follow_parent))
     }
 
     // Respawn.
-    if (x &lt; view_xview - 96 || x &gt; view_xview + view_wview + 96)
+    if (x &lt; view_xview - 96 || x &gt; view_xview + view_wview + 96 || y &gt; view_yview + view_hview + 192)
     {
         if (state != STATE_RESPAWN)
         {

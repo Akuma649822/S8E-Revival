@@ -21,7 +21,7 @@ if (magnetized) exit;
 // Apply Motion:
 if (motion)
 {
-    if (!place_meeting(x + x_speed, y, par_solid))
+    if (!place_meeting(x + x_speed, y, par_terrain))
     {
         x += x_speed;
     }
@@ -30,7 +30,7 @@ if (motion)
         x_speed *= -0.25;
     }
 
-    if (!place_meeting(x, y + y_speed, par_solid))
+    if (!place_meeting(x, y + y_speed, par_terrain))
     {
         y += y_speed;
     }

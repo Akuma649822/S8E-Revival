@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <constants>
-  <constant name="GAME_NAME" value="&quot;S8E&quot;"/>
-  <constant name="GAME_VERSION" value="&quot;V3.1&quot;"/>
+  <constant name="GAME_NAME" value="&quot;S8E Revival&quot;"/>
+  <constant name="GAME_VERSION" value="&quot;V1.0&quot;"/>
   <constant name="SFX" value="obj_audio"/>
   <constant name="COL_MAIN" value="1"/>
   <constant name="COL_MAIN_OBJECT" value="2"/>

@@ -48,7 +48,7 @@ if (keyboard_check_pressed(global.key_action))
     if (option_selected == 0)
     {
         instance_activate_all();
-        caster_resume(all);
+        audio_set_pause(all, false);
         if (background_exists(game_snapshot))
         {
             background_delete(game_snapshot);

@@ -28,7 +28,7 @@ if (time_visibility)
 }
 if (ring_visibility)
 {
-    draw_sprite(spr_hud, 2, view_xview + 16, view_yview + 41)
+    draw_sprite(spr_hud, 2, view_xview + 16, view_yview + 41);
 }
 
 // HUD Parts visibility.

@@ -13,7 +13,7 @@ if (ground && x_speed == 0 && y_speed == 0 && state == STATE_DEFAULT && allow_lo
 // Check if looking up:
 if (state == STATE_LOOKUP)
 {
-    // Change timer.
+    // Increase camera timer.
     timer_up += 1;
 
     // Stop horizontal speed.

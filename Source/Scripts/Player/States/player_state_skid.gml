@@ -89,5 +89,14 @@ if (state == STATE_SKID)
         }
     }
 
-    if (!ground) state = STATE_DEFAULT;
+    if (!ground)
+    {
+        state = STATE_DEFAULT;
+        
+        // Change to the running animation.
+        if (animation == "SKID" || animation == "SKID_TURN")
+        {
+            animation = "RUN";
+        }
+    }
 }

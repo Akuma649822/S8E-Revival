@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<event category="OTHER" id="5">
+<event category="DRAW" id="0">
   <actions>
     <action id="603" library="1">
       <!--action name: Code-->
@@ -13,12 +13,11 @@
       <not>false</not>
       <appliesTo>.self</appliesTo>
       <arguments>
-        <argument kind="STRING">/// Delete the snapshot if it still exists.
-// We do this when restarting/exiting the level to prevent a memory leak.
-if (background_exists(game_snapshot))
-{
-    background_delete(game_snapshot);
-}
+        <argument kind="STRING">/// Draw Time Over.
+draw_sprite(sprite_index, 0, view_xview + view_wview / 2 + time_x, view_yview + view_hview / 2);
+draw_sprite(sprite_index, 1, view_xview + view_wview / 2 + over_x, view_yview + view_hview / 2);
+time_x = approach(time_x, 0, 10);
+over_x = approach(over_x, 0, 10);
 </argument>
       </arguments>
     </action>

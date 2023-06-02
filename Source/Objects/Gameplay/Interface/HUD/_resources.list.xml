@@ -3,4 +3,5 @@
   <resource name="obj_hud" type="RESOURCE"/>
   <resource name="obj_pause" type="RESOURCE"/>
   <resource name="obj_game_over" type="RESOURCE"/>
+  <resource name="obj_time_over" type="RESOURCE"/>
 </resources>

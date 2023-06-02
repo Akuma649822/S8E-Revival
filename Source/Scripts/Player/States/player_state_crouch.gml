@@ -13,7 +13,7 @@ if (ground && x_speed == 0 && y_speed == 0 && (state == STATE_DEFAULT || state =
 // Check if crouching:
 if (state == STATE_CROUCH)
 {
-    // Change timer.
+    // Increase camera timer.
     timer_down += 1;
 
     // Reset state:

@@ -15,15 +15,15 @@
       <arguments>
         <argument kind="STRING">/// Change audio volume &amp; pitch.
 
-// Exit when the game over is on screen.
-if (instance_exists(obj_game_over))
+// Exit when the game/time over is onscreen.
+if (instance_exists(obj_game_over) || instance_exists(obj_time_over))
 {
     global.bgm_volume = backup_bgm_volume;
     global.sfx_volume = backup_sfx_volume;
     exit;
 }
 
-// Exit when the results are on screen.
+// Exit when the results are onscreen.
 if (instance_exists(obj_results) &amp;&amp; !zone_results)
 {
     zone_results = true;

@@ -99,7 +99,7 @@ if (global.water_position != -1)
     {
         if (physic_mode != 0)
         {
-            physic_mode = 0
+            physic_mode = 0;
         }
     }
     if (y &gt; global.water_position)

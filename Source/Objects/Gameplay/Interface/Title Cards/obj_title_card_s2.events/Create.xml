@@ -17,7 +17,7 @@
 // Credit to Tpot for the title card. (Originally taken from the Sonic MAX framework)
 
 // State:
-tc_state         = 0;
+tc_state         = 1;
 tc_wait_timer[1] = 75;
 tc_wait_timer[2] = 75;
 

@@ -16,7 +16,7 @@
         <argument kind="STRING">/// Draw title card.
 
 // Black Rectangle:
-if (tc_state == 0)
+if (tc_state == 1)
 {
     draw_set_color(c_black);
     draw_rectangle(view_xview, view_yview, view_xview + view_wview, view_yview + view_hview, false);
@@ -24,7 +24,7 @@ if (tc_state == 0)
 
 // Blue Rectangle:
 draw_set_color(c_blue);
-draw_rectangle(view_xview, view_yview - (tc_state != 0), view_xview + view_wview, view_yview + tc_blue_y, false);
+draw_rectangle(view_xview, view_yview - (tc_state != 1), view_xview + view_wview, view_yview + tc_blue_y, false);
 
 // Yellow Rectangle:
 draw_set_color(c_yellow);

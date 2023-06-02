@@ -8,7 +8,12 @@
   </grid>
   <speed>60</speed>
   <persistent>false</persistent>
-  <creationCode/>
+  <creationCode>/// Set room caption.
+if (room_caption != string(GAME_NAME) + " " + string(GAME_VERSION))
+{
+    room_caption  = string(GAME_NAME) + " " + string(GAME_VERSION);
+}
+</creationCode>
   <backgroundColor>000000</backgroundColor>
   <drawBackgroundColor>true</drawBackgroundColor>
   <clearViewBackground>true</clearViewBackground>

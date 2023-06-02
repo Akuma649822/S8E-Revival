@@ -22,7 +22,7 @@ instance_activate_object(obj_screen_controller);
 instance_activate_object(obj_audio);
 
 // Pause sounds and create snapshot.
-caster_pause(all);
+audio_set_pause(all, true);
 game_snapshot = background_create_from_screen(0, 0, global.screen_width, global.screen_height, 0, 0);
 
 // Options.

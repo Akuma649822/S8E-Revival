@@ -16,59 +16,59 @@
         <argument kind="STRING">/// Move Positions.
 
 // Card:
-if (tc_state == 0)
+if (tc_state == 1)
 {
     if (tc_card_x &gt; (view_wview / 2) + 64)
     {
         tc_card_x = max((view_wview / 2) + 64, tc_card_x - 16);
     }
 }
-if (tc_state == 2)
+if (tc_state == 3)
 {
     tc_card_x += 32;
 }
 
 // Zone name:
-if (tc_state == 0)
+if (tc_state == 1)
 {
     if (tc_name_x &lt; view_wview / 2)
     {
         tc_name_x = min(view_wview / 2, tc_name_x + 16);
     }
 }
-if (tc_state == 2)
+if (tc_state == 3)
 {
     tc_name_x -= 32;
 }
 
 // "Zone" text:
-if (tc_state == 0)
+if (tc_state == 1)
 {
     if (tc_name_x == view_wview / 2 &amp;&amp; tc_zone_x &lt; (view_wview / 2) + 32)
     {
         tc_zone_x = min((view_wview / 2) + 32, tc_zone_x + 16);
     }
 }
-if (tc_state == 2)
+if (tc_state == 3)
 {
     tc_zone_x -= 32;
 }
 
 // Act number:
-if (tc_state == 0)
+if (tc_state == 1)
 {
     if (tc_zone_x == (view_wview / 2) + 32 &amp;&amp; tc_act_x &gt; (view_wview / 2) + 45)
     {
         tc_act_x = max((view_wview / 2) + 45, tc_act_x - 16);
     }
 }
-if (tc_state == 2)
+if (tc_state == 3)
 {
     tc_act_x += 32;
 }
 
 // Backdrop alpha:
-if (tc_state == 1)
+if (tc_state == 2)
 {
     if (tc_backdrop_alpha &gt; 0)
     {
@@ -81,7 +81,7 @@ if (tc_state == 1)
 }
 
 // Wait to change state.
-if (tc_state == 0 &amp;&amp; tc_act_x == (view_wview / 2) + 45)
+if (tc_state == 1 &amp;&amp; tc_act_x == (view_wview / 2) + 45)
 {
     if (tc_wait_timer[1] &gt; 0)
     {
@@ -90,10 +90,10 @@ if (tc_state == 0 &amp;&amp; tc_act_x == (view_wview / 2) + 45)
     else
     {
         tc_wait_timer[1] = 0;
-        tc_state         = 1;
+        tc_state         = 2;
     }
 }
-if (tc_state == 1 &amp;&amp; tc_backdrop_alpha == 0)
+if (tc_state == 2 &amp;&amp; tc_backdrop_alpha == 0)
 {
     if (tc_wait_timer[2] &gt; 0)
     {
@@ -102,7 +102,7 @@ if (tc_state == 1 &amp;&amp; tc_backdrop_alpha == 0)
     else
     {
         tc_wait_timer[2] = 0;
-        tc_state         = 2;
+        tc_state         = 3;
     }
 }
 

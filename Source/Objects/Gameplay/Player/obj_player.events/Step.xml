@@ -84,7 +84,14 @@ if (state == STATE_DEATH)
         // If we have more than 0 lives, restart the room, otherwise, trigger a game over.
         if (global.player_lives &gt; 0)
         {
-            instance_create(0, 0, obj_fade_restart);
+            if (global.time_over_flag &amp;&amp; global.game_time &gt;= 599999)
+            {
+                instance_create(0, 0, obj_time_over);
+            }
+            else
+            {
+                instance_create(0, 0, obj_fade_restart);
+            }
         }
         else
         {
@@ -351,29 +358,32 @@ if (!ground)
 }
 
 // Fall off the ground if the edges aren't colliding:
-if (ground &amp;&amp; angle != 0)
+repeat (_steps)
 {
-    if (!player_collision_check(COL_LEFT_EDGE, x, y, angle) || !player_collision_check(COL_RIGHT_EDGE, x, y, angle))
+    if (ground &amp;&amp; angle != 0)
     {
-        // Launch off slopes:
-        if (floor_mode == 1 || floor_mode == 3)
+        if (!player_collision_check(COL_LEFT_EDGE, x, y, angle) || !player_collision_check(COL_RIGHT_EDGE, x, y, angle))
         {
-            // Set speeds:
-            y_speed = -(dsin(angle_relative) * g_speed);
-            x_speed =   dcos(angle_relative) * x_speed;
+            // Launch off slopes:
+            if (floor_mode == 1 || floor_mode == 3)
+            {
+                // Set speeds:
+                y_speed = -(dsin(angle_relative) * g_speed);
+                x_speed =   dcos(angle_relative) * x_speed;
 
-            // Lock horizontal movement:
-            launch_lock = 3;
+                // Lock horizontal movement:
+                launch_lock = 3;
 
-            // Change flags:
-            ground        = false;
-            shield_usable = false;
-        }
-        else // Fall off tiles.
-        {
-            ground  =  false;
-            y_speed = -dsin(angle) * x_speed;
-            x_speed =  dcos(angle) * x_speed;
+                // Change flags:
+                ground        = false;
+                shield_usable = false;
+            }
+            else // Fall off tiles.
+            {
+                ground  =  false;
+                y_speed = -dsin(angle) * x_speed;
+                x_speed =  dcos(angle) * x_speed;
+            }
         }
     }
 }
@@ -1005,7 +1015,7 @@ if (state != STATE_DEATH &amp;&amp; !instance_exists(obj_results))
             {
                 audio_play_sound(SFX._jingle_drown, global.sfx_volume, 1, 0, 1);
             }
-            if (!instance_exists(obj_water_alarm))
+            if (instance_number(obj_water_alarm) &lt; 2)
             {
                 drown_counter        = instance_create(x, y - 32, obj_water_alarm);
                 drown_counter.parent = id;
