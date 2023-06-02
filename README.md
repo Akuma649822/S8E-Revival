@@ -1,4 +1,4 @@
-# S8E-V3.1
+# S8E Revival
 This is an edited version of the 3.0 build of the S8E framework (https://drive.google.com/file/d/1NCz-Uax4JcLz3-trludktemMbF2GelRi/view) originally created by AleksNB. It is primarily comprised of bug fixes backported from the Harinezumi framework, my own fixes for issues in S8E specifically, and a few minor feature additions ported from the Flicky 8 and Sonic MAX engines.
 
 To load the project, you need to have the Standard edition of Game Maker 8.1.141. Older versions won't work as the project uses the clamp() and lerp() functions that were introduced in that version.
