@@ -30,15 +30,17 @@ For audio playback:
 
 For controller handling:
 - You'll have to rename the scripts in the "joydll-transparent" group since they conflict with the joystick_* functions of the same names.
-- If you're using a version of Studio older than 1.4.1772, you'll need to remove the line that references the variable_global_exists() function in the joy_init() script.
+- If you're using a version of GameMaker: Studio older than 1.4.1772, you'll need to remove the line that references the variable_global_exists() function in the joy_init() script since older versions lack the variable_* functions.
 - You may or may not choose to use Studio's gamepad functions instead of JoyDLL.
 
 # Known Issues
 - The player is unable to grab onto slopes at specific angles.
-- The player is prone to slipping off corners of flat tiles that connect with ramps, and shooting past downward-curved slopes. Unfortunately, these would prove difficult to fix, as the player's various hitboxes are circular, which means precise collisions are not always guaranteed.
+- The player is prone to slipping off corners of flat tiles that connect with ramps, and shooting past downward-curved slopes.
+
+EDIT 05/07/2023: I have fixed these bugs, and more, in the development build of the framework. However, I am unable to provide a date for the next release due to the amount of content I plan to add.
 
 # Credits
-- Coding: AleksNB, F4LK, John-Kun, Tpot, Akuma649822.
+- Coding: AleksNB, F4LK, John-Kun, Tpot, Shiro/Violet, Noah N Copeland, Akuma649822.
   > Additional credits to those that helped with the development of the Sonic MAX, GMate, Flicky/8, S8E and Harinezumi frameworks as well since S8E was a re-write of those engines (excl. HZ), and S8E Revival uses some code from them.
 - Beta testing: somerandomusername.
 - GmkSplitter: Medo42.
